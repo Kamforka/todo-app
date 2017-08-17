@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+body, html {
+  margin: 0;
+  height: 100%;
+  background: url(assets/images/bg.jpg) no-repeat;
+  background-size: cover;
+}
+
+@keyframes shrink-grow {
+  0%, 100% { transform: scale(1.0); },
+  50% { transform: scale(1.5); }
+}
+
+.loading {
+  margin: auto;
+  animation: shrink-grow 2s infinite;
+}

@@ -1,0 +1,27 @@
+<div class="container" [ngClass]="todoColor" fxLayout="column" fxLayoutAlign="start center" fxFlex>
+  <div class="todo-pin"></div>
+  <h2 class="todo-list-title" fxFlexAlign="start">Todo list</h2>
+  <input class="todo-add"
+         type="text"
+         placeholder="What to do?"
+         [(ngModel)]="todoTitle"
+         (keyup.enter)="onAddTodo()">
+  <span class="spacer" fxFlex="20px"></span>
+  <div class="todo-items" fxLayout="column" fxLayoutAlign="space-between stretch" *ngIf="todos">
+    <div class="todo-item" *ngFor="let todo of todos" [ngClass]="{checked: todo.completed}" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+      <div class="todo-toggle" (click)="onToggleTodo(todo)"></div>
+      <div class="todo-title"
+           [mdTooltip]="todo.title"
+           [mdTooltipDisabled]="todo.title.length <= 20"
+           mdTooltipPosition="above"
+           mdTooltipShowDelay="500"
+           fxFlex>{{ todo.title | truncate: 20: '..' }}</div>
+      <md-icon class="todo-edit" [routerLink]="['/todos/', todo.id]" fxFlexAlign="end">edit</md-icon>
+      <md-icon class="todo-delete" (click)="onDeleteTodo(todo.id)" fxFlexAlign="end">delete</md-icon>
+    </div>
+  </div>
+  <div class="loading" *ngIf="!todos">Loading...</div>
+  <div class="color-picker" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+    <div *ngFor="let color of todoColors" [ngClass]="color" (click)="onColorPick(color)"></div>
+  </div>
+</div>

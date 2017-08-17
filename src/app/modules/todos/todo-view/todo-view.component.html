@@ -1,0 +1,19 @@
+<div class="container" fxLayout="column" fxLayoutAlign="start stretch">
+  <div class="todo-pin"></div>
+  <div class="todo-created">{{ todo?.createdAt | date: 'y-MM-dd HH:mm' }}</div>
+  <ng-container *ngIf="todo">
+    <div class="todo-header" fxLayout="row" fxLayoutAlign="start center">
+      <div class="todo-toggle" [ngClass]="{checked: todo.completed}" (click)="onToggleTodo(todo)"></div>
+      <input class="todo-title" type="text" [(ngModel)]="todo.title" fxFlexAlign="start" [disabled]="!editTitle">
+      <md-icon class="todo-edit" (click)="editTitle = !editTitle">edit</md-icon>
+    </div>
+    <textarea class="todo-content" [(ngModel)]="todo.content" placeholder="Add todo content..." fxFlex></textarea>
+    <div class="todo-actions" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px" fxFlexAlign="end">
+      <button (click)="onUpdateTodo()">Save</button>
+      <button [routerLink]="['/todos/']">Back</button>
+    </div>
+  </ng-container>
+  <div class="loading" *ngIf="!todo">
+    Loading...
+  </div>
+</div>

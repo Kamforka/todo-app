@@ -1,0 +1,89 @@
+:host {
+  display: flex;
+  width: 100%;
+  margin: 10px;
+}
+
+.container {
+  position: relative;
+  margin: auto;
+  width: 500px;
+  height: 350px;
+  padding: 35px 50px;
+  transform: rotate(-2deg);
+  background-color: rgb(253, 252, 187);
+}
+
+.todo-created {
+  position: absolute;
+  top: 2px; left: 2px;
+  color: gray;
+  font-size: 8px;
+  border-bottom: 1px solid gray;
+}
+
+.todo-pin {
+    position: absolute;
+    width: 65px;
+    height: 50px;
+    background: url(../../../../assets/images/pin.png) no-repeat center center fixed;
+    background-size: contain;
+    right: 0px;
+    top: 5px;
+    transform: translate(0, 0);
+}
+
+.todo-toggle {
+  cursor: pointer;
+  opacity: 0.75;
+  border: 2px solid black;
+  border-radius: 2px;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+
+  &.checked {
+    background: url(../../../../assets/images/check.png) no-repeat center center;
+    background-size: cover;
+  }
+}
+
+.todo-title {
+  background: transparent;
+  border: none;
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.todo-edit {
+  visibility: hidden;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: opacity 300, visibility 200ms;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.todo-content {
+  background: transparent;
+  border: none;
+  resize: none;
+}
+
+.todo-actions > button {
+  padding: 5px 10px;
+  border: 1px solid gray;
+  background-color: rgb(253, 252, 187);
+  box-shadow: 0px 2px 5px #888888;
+  &:hover {
+    box-shadow: 0px 5px 5px #888888;
+  }
+  color: gray;
+  cursor: pointer;
+}
+
+.todo-header:hover .todo-edit {
+  visibility: visible;
+}

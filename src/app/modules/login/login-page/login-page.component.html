@@ -1,0 +1,26 @@
+<div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <md-card fxLayout="column">
+      <md-card-title>
+        Login
+      </md-card-title>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()" novalidate>
+        <md-card-content fxLayout="column ">
+          <md-input-container>
+            <input mdInput formControlName="email" type="email" placeholder="email address">
+            <md-error *ngIf="loginForm.get('email').hasError('required')">Please enter your email address.</md-error>
+            <md-error *ngIf="loginForm.get('email').hasError('email') && !loginForm.get('email').hasError('required')">Invalid
+              email address.
+</md-error>
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="password" type="password" placeholder="password">
+            <md-error *ngIf="loginForm.get('password').hasError('required')">Please enter your password.</md-error>
+          </md-input-container>
+        </md-card-content>
+        <md-card-actions fxLayout="row" fxLayoutAlign="end center">
+          <button md-raised-button type="submit">Login</button>
+        </md-card-actions>
+      </form>
+  </md-card>
+</div>
