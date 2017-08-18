@@ -1,0 +1,11 @@
+<div class="todo-item" [ngClass]="{checked: todo.completed}" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+  <div class="todo-toggle" (click)="onToggleTodo(todo)"></div>
+  <div class="todo-title"
+       [mdTooltip]="todo.title"
+       [mdTooltipDisabled]="todo.title.length <= 20"
+       mdTooltipPosition="above"
+       mdTooltipShowDelay="500"
+       fxFlex>{{ todo.title | truncate: 20: '...' }}</div>
+  <md-icon class="todo-edit" [routerLink]="['/todos/', todo.id]" fxFlexAlign="end">edit</md-icon>
+  <md-icon class="todo-delete" (click)="onDeleteTodo(todo)" fxFlexAlign="end">delete</md-icon>
+</div>

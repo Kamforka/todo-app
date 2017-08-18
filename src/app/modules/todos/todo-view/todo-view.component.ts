@@ -29,7 +29,7 @@ export class TodoViewComponent implements OnInit {
   }
 
   onUpdateTodo() {
-    this.todoService.updateTodo(this.id, this.todo)
+    this.todoService.updateTodo(this.todo)
       .subscribe(
         todo => {
           this.getTodo();
@@ -41,11 +41,7 @@ export class TodoViewComponent implements OnInit {
   }
 
   onToggleTodo(todo: Todo) {
-    todo = Object.assign({}, todo, {
-      completed: !todo.completed
-    });
-
-    this.todoService.updateTodo(todo.id, todo)
+    this.todoService.toggleTodo(todo)
       .subscribe(
         updatedTodo => {
           this.getTodo();

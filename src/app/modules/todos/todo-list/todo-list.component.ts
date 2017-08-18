@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TodoService } from '../services/todo.service';
 import { Todo } from '../models/todo';
+import { ColorPickerOption } from '../color-picker/color-picker-option';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -15,9 +16,12 @@ import 'rxjs/add/operator/catch';
 export class TodoListComponent implements OnInit {
 
   todos: Todo[] = null;
-  todoTitle = '';
-  todoColors = ['yellow', 'blue', 'green', 'white'];
-  todoColor = this.todoColors[0];
+  todoColors: ColorPickerOption[] = [
+    { color: 'yellow' }, { color: 'blue' },
+    { color: 'green' }, { color: 'white' },
+  ];
+
+  todoColor: ColorPickerOption = this.todoColors[0];
 
   constructor(private todoService: TodoService) { }
 
@@ -32,13 +36,8 @@ export class TodoListComponent implements OnInit {
         error => console.log(error));
   }
 
-  onAddTodo($event) {
-    const todoValues = Object.assign({}, {
-      title: this.todoTitle,
-      content: '',
-      createdAt: new Date(Date.now())
-    });
-    this.todoService.addTodo(todoValues)
+  onAddTodo(todo: Todo) {
+    this.todoService.addTodo(todo)
       .subscribe(
         response => {
           this.getTodos();
@@ -46,14 +45,13 @@ export class TodoListComponent implements OnInit {
         error => {
           console.log(error);
         });
-    this.todoTitle = '';
   }
 
-  onDeleteTodo(id: number) {
+  onDeleteTodo(todo: Todo) {
     if (confirm('Delete for sure?')) {
-      this.todoService.deleteTodo(id)
+      this.todoService.deleteTodo(todo)
         .subscribe(
-          todo => {
+          response => {
             this.getTodos();
           },
           error => {
@@ -63,11 +61,7 @@ export class TodoListComponent implements OnInit {
   }
 
   onToggleTodo(todo: Todo) {
-    todo = Object.assign({}, todo, {
-      completed: !todo.completed
-    });
-
-    this.todoService.updateTodo(todo.id, todo)
+    this.todoService.toggleTodo(todo)
       .subscribe(
         updatedTodo => {
           this.getTodos();
@@ -77,8 +71,8 @@ export class TodoListComponent implements OnInit {
         });
   }
 
-  onColorPick(color: string) {
-    this.todoColor = color;
+  onColorPick(colorPickerOption: ColorPickerOption) {
+    this.todoColor = colorPickerOption;
   }
 
 }

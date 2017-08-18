@@ -1,0 +1,43 @@
+.todo-item {
+  padding: 5px 0 2px 0;
+}
+
+.todo-toggle {
+  cursor: pointer;
+  opacity: 0.75;
+  border: 2px solid black;
+  border-radius: 2px;
+  width: 15px;
+  height: 15px;
+
+}
+
+.todo-item.checked {
+  .todo-toggle {
+    background: url(../../../../../../assets/images/check.png) no-repeat center center;
+    background-size: cover;
+  }
+
+  .todo-title {
+    font-style: italic;
+    text-decoration: line-through;
+    opacity: 0.35;
+  }
+}
+
+.todo-edit:hover {
+  color: green;
+}
+
+.todo-delete:hover {
+  color: red;
+}
+
+.todo-delete, .todo-edit {
+  cursor: pointer;
+  opacity: 0.3;
+  transition: opacity 200ms;
+  &:hover {
+    opacity: 1;
+  }
+}

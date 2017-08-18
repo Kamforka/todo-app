@@ -1,0 +1,19 @@
+.color-picker {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.color-picker > div {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  border-radius: 1px;
+  opacity: 0.3;
+  transition: opacity 300ms;
+
+  &:hover, &.active {
+    opacity: 1;
+  }
+}

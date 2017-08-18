@@ -1,0 +1,6 @@
+  <div class="todo-items" fxLayout="column" fxLayoutAlign="space-between stretch" *ngIf="todos">
+    <app-todo-item *ngFor="let todo of todos"
+                    [todo]="todo"
+                    (toggleTodo)="onToggleTodo($event)"
+                    (deleteTodo)="onDeleteTodo($event)"></app-todo-item>
+  </div>

@@ -1,0 +1,6 @@
+  <input class="todo-add"
+         type="text"
+         placeholder="What to do?"
+         autofocus="true"
+         [(ngModel)]="todo.title"
+         (keyup.enter)="onAddTodo(todo)">

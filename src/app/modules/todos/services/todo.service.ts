@@ -5,10 +5,11 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
+import { environment } from '../../../../environments/environment';
+
 import { Todo } from '../models/todo';
 
-const API_URL = 'https://5993d631d297ba0011da1ad8.mockapi.io/api/v1';
-const API_EP = `${API_URL}/todos`;
+const API_EP = `${environment.apiUrl}/todos`;
 
 @Injectable()
 export class TodoService {
@@ -18,29 +19,46 @@ export class TodoService {
   getTodos(): Observable<Todo[]> {
     return this.http.get(API_EP)
       .map((response: Response) => response.json())
-      .catch((error: any) => Observable.throw(error.json().error || 'Get Todos error'));
+      .catch(this.handleError);
   }
 
-  getTodo(id: number): Observable<Todo> {
-    return this.http.get(`${API_EP}/${id}`)
-      .map((response: Response) => response.json());
-  }
-
-  addTodo(todoValues: Object = {}): Observable<Todo> {
-    return this.http.post(API_EP, todoValues)
+  getTodo(todoId: number): Observable<Todo> {
+    return this.http.get(`${API_EP}/${todoId}`)
       .map((response: Response) => response.json())
-      .catch((error: any) => Observable.throw(error.json().error || 'Add Todo Error'));
+      .catch(this.handleError);
   }
 
-  deleteTodo(id: number): Observable<Todo> {
-    return this.http.delete(`${API_EP}/${id}`)
+  addTodo(todo: Todo): Observable<Todo> {
+    todo = Object.assign(todo, {
+      completed: false,
+      content: '',
+      createdAt: new Date(Date.now()),
+    });
+
+    return this.http.post(API_EP, todo)
       .map((response: Response) => response.json())
-      .catch((error: any) => Observable.throw(error.json().error || 'Delete Todo error'));
+      .catch(this.handleError);
   }
 
-  updateTodo(id: number, todo: Todo): Observable<Todo> {
-    return this.http.put(`${API_EP}/${id}`, todo)
+  deleteTodo(todo: Todo): Observable<Todo> {
+    return this.http.delete(`${API_EP}/${todo.id}`)
       .map((response: Response) => response.json())
-      .catch((error: any) => Observable.throw(error.json().error || 'Update Todo error'));
+      .catch(this.handleError);
+  }
+
+  updateTodo(todo: Todo): Observable<Todo> {
+    return this.http.put(`${API_EP}/${todo.id}`, todo)
+      .map((response: Response) => response.json())
+      .catch(this.handleError);
+  }
+
+  toggleTodo(todo: Todo) {
+    todo = Object.assign(todo, { completed: !todo.completed });
+    return this.updateTodo(todo);
+  }
+
+  private handleError(error: Response | any) {
+    console.error('TodoService::handleError', error);
+    return Observable.throw(error);
   }
 }

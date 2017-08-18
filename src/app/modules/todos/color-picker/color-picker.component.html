@@ -1,0 +1,3 @@
+<div class="color-picker" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+  <div *ngFor="let option of options" [class]="option.color" [ngClass]="{'active': option===selected}" (click)="onColorPick(option)"></div>
+</div>

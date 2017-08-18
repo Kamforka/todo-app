@@ -25,68 +25,12 @@
     transform: translate(-50%, 0);
 }
 
-.todo-add {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid gray;
+app-todo-input {
   width: 100%;
 }
 
-.todo-items {
+app-todo-items {
   width: 100%;
-}
-
-.todo-item {
-  padding: 5px 0 2px 0;
-}
-
-.todo-toggle {
-  cursor: pointer;
-  opacity: 0.75;
-  border: 2px solid black;
-  border-radius: 2px;
-  width: 15px;
-  height: 15px;
-
-  // &.checked {
-  //   background: url(../../../../assets/images/check.png) no-repeat center center;
-  //   background-size: cover;
-  // }
-}
-
-.todo-title {
-  margin-bottom: 2px;
-  border-bottom: 1px solid gray;
-}
-
-.todo-item.checked {
-  .todo-toggle {
-    background: url(../../../../assets/images/check.png) no-repeat center center;
-    background-size: cover;
-  }
-
-  .todo-title {
-    font-style: italic;
-    text-decoration: line-through;
-    opacity: 0.35;
-  }
-}
-
-.todo-edit:hover {
-  color: green;
-}
-
-.todo-delete:hover {
-  color: red;
-}
-
-.todo-delete, .todo-edit {
-  cursor: pointer;
-  opacity: 0.3;
-  transition: opacity 200ms;
-  &:hover {
-    opacity: 1;
-  }
 }
 
 .color-picker {
@@ -101,23 +45,10 @@
   height: 20px;
   border: 1px solid black;
   border-radius: 1px;
-  opacity: 0.5;
+  opacity: 0.3;
   transition: opacity 300ms;
 
-  &:hover {
+  &:hover, &.active {
     opacity: 1;
   }
-}
-
-.yellow {
-  background-color: rgb(253, 252, 187);
-}
-.blue {
-  background-color: rgb(201, 231, 247);
-}
-.green {
-  background-color: rgb(190, 241, 186);
-}
-.white {
-  background-color: rgb(244, 244, 244);
 }
