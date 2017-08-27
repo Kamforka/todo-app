@@ -1,4 +1,5 @@
-<div class="container" [ngClass]="todoColor.color" fxLayout="column" fxLayoutAlign="start center" fxFlex>
+<div class="container" [ngClass]="todoColor.color" fxLayout="column" fxLayoutAlign="start center">
+  <a href="#" class="logout" (click)="onLogOut()"></a>
   <div class="todo-pin"></div>
   <h2 class="todo-list-title" fxFlexAlign="start">Todo list</h2>
   <app-todo-input (addTodo)="onAddTodo($event)"></app-todo-input>

@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { LoginGuard } from './modules/login/guards/login.guard';
 import { LoginService } from './modules/login/services/login.service';
 
+import { NotFoundModule } from './modules/not-found/not-found.module';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -19,7 +21,8 @@ import { LoginService } from './modules/login/services/login.service';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NotFoundModule,
   ],
   providers: [
     LoginGuard, LoginService

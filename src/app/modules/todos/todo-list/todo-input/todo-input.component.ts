@@ -20,8 +20,11 @@ export class TodoInputComponent implements OnInit {
   }
 
   onAddTodo() {
-    this.addTodo.emit(this.todo);
-    this.todo = { title: '' };
+    console.log('todo-input::onAddTodo()');
+    if (this.todo.title.length) {
+      this.addTodo.emit(this.todo);
+      this.todo = { title: '' };
+    }
   }
 
 }

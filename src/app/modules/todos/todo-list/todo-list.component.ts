@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from '../../login/services/login.service';
 import { TodoService } from '../services/todo.service';
 import { Todo } from '../models/todo';
 import { ColorPickerOption } from '../color-picker/color-picker-option';
@@ -23,7 +24,8 @@ export class TodoListComponent implements OnInit {
 
   todoColor: ColorPickerOption = this.todoColors[0];
 
-  constructor(private todoService: TodoService) { }
+  constructor(private todoService: TodoService,
+              private loginService: LoginService) { }
 
   ngOnInit() {
     this.getTodos();
@@ -39,8 +41,9 @@ export class TodoListComponent implements OnInit {
   onAddTodo(todo: Todo) {
     this.todoService.addTodo(todo)
       .subscribe(
-        response => {
-          this.getTodos();
+        newTodo => {
+          // this.getTodos();
+          this.todos = [...this.todos, newTodo];
         },
         error => {
           console.log(error);
@@ -52,7 +55,8 @@ export class TodoListComponent implements OnInit {
       this.todoService.deleteTodo(todo)
         .subscribe(
           response => {
-            this.getTodos();
+            // this.getTodos();
+            this.todos = this.todos.filter(t => t.id !== todo.id);
           },
           error => {
             console.log(error);
@@ -64,7 +68,8 @@ export class TodoListComponent implements OnInit {
     this.todoService.toggleTodo(todo)
       .subscribe(
         updatedTodo => {
-          this.getTodos();
+          // this.getTodos();
+          todo = updatedTodo;
         },
         error => {
           console.log(error);
@@ -73,6 +78,10 @@ export class TodoListComponent implements OnInit {
 
   onColorPick(colorPickerOption: ColorPickerOption) {
     this.todoColor = colorPickerOption;
+  }
+
+  onLogOut() {
+    this.loginService.logOut();
   }
 
 }

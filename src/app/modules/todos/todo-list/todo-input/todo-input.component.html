@@ -1,6 +1,9 @@
-  <input class="todo-add"
-         type="text"
-         placeholder="What to do?"
-         autofocus="true"
-         [(ngModel)]="todo.title"
-         (keyup.enter)="onAddTodo(todo)">
+  <div class="container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+    <input class="todo-add"
+           type="text"
+           placeholder="What to do?"
+           autofocus="true"
+           [(ngModel)]="todo.title"
+           (keyup.enter)="onAddTodo(todo)" fxFlex>
+    <button class="add-btn" (click)="onAddTodo(todo)" fxHide.gt-sm>+</button>
+ </div  >

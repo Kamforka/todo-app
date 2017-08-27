@@ -3,4 +3,17 @@
   border: none;
   border-bottom: 1px solid gray;
   width: 100%;
+
+  &:focus {
+    outline: none;
+  }
 }
+// .add-btn {
+//   display: none;
+// }
+//
+// @media screen and (max-width: 800px) {
+//   .add-btn {
+//     display: block;
+//   }
+// }

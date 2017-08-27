@@ -1,5 +1,5 @@
 :host {
-  display: flex;
+  // display: flex;
   width: 100%;
   margin: 10px;
 }
@@ -7,18 +7,34 @@
 .container {
   position: relative;
   margin: auto;
-  max-width: 650px;
+  // width: 100%;
+  max-width: 650px !important;
   min-width: 450px;
   height: 100%;
   padding: 35px 50px;
-  transform: rotateX(-10);
+}
+
+.logout {
+  position: absolute;
+  background: url(../../../../assets/images/logout.png) no-repeat center center;
+  background-size: contain;
+  right: 10px;
+  top: 10px;
+  width: 25px;
+  height: 25px;
+  filter: grayscale(100%);
+  transition: all 300ms;
+
+  &:hover {
+    filter: none;
+  }
 }
 
 .todo-pin {
     position: absolute;
     width: 65px;
     height: 50px;
-    background: url(../../../../assets/images/pin.png) no-repeat center center fixed;
+    background: url(../../../../assets/images/pin.png) no-repeat center center;
     background-size: contain;
     left: 50%;
     top: 20px;
@@ -33,22 +49,10 @@ app-todo-items {
   width: 100%;
 }
 
-.color-picker {
+app-color-picker {
   position: absolute;
   bottom: 10px;
+  // padding-bottom: 10px;
+  // padding-right: 10px;
   right: 10px;
-}
-
-.color-picker > div {
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  border: 1px solid black;
-  border-radius: 1px;
-  opacity: 0.3;
-  transition: opacity 300ms;
-
-  &:hover, &.active {
-    opacity: 1;
-  }
 }
